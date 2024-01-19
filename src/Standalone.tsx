@@ -48,7 +48,6 @@ const Standalone = () => {
               withControls={true}
               withClearButton={true}
               hasSeconds={false}
-              disabled
             ></TimeInput>
           );
         }}
