@@ -1,0 +1,34 @@
+.app {
+  display: flex;
+  column-gap: 5rem;
+  justify-content: center;
+  align-items: center;
+
+  .divider {
+    height: 10rem;
+    width: 0.5px;
+    background-color: #ddd;
+  }
+
+  .example-form form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+
+  .example-form input[type="text"] {
+    padding: 0.5rem;
+    border-radius: 10px;
+    background-color: white;
+    border-color: #1e8eab;
+    color: #000000;
+  }
+
+  .example-form .clorian-button {
+    padding: 0.5rem;
+    width: 50%;
+    margin: 0 auto;
+    background-color: #1e8eab;
+    border-radius: 25px;
+  }
+}

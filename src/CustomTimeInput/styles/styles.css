@@ -1,0 +1,140 @@
+:root {
+  --controls-color: #242424;
+}
+
+.inputContainer {
+  display: flex;
+  background-color: white;
+  color: black;
+  padding: 10px 15px;
+  column-gap: 0.3rem;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+.inputContainer input[type="number"] {
+  outline: 0;
+  border: none;
+  color: var(--controls-color);
+  background-color: #ffffff;
+  max-width: 13px;
+  padding: 2px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.inputContainer.disabled input[type="number"] {
+  color: #00000029;
+}
+
+.inputContainer.disabled span {
+  color: #00000029;
+}
+
+.inputContainer .hourContainer.hh.noValue input[type="number"] {
+  max-width: 32px;
+}
+.inputContainer .hourContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+.inputContainer .hourContainer.noZero input[type="number"] {
+  max-width: 23px;
+}
+
+.inputContainer .minutesContainer.mm.noValue input[type="number"] {
+  max-width: 32px;
+}
+.inputContainer .minutesContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+.inputContainer .minutesContainer.noZero input[type="number"] {
+  max-width: 23px;
+}
+
+.inputContainer .secondsContainer.ss.noValue input[type="number"] {
+  max-width: 32px;
+}
+.inputContainer .secondsContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+.inputContainer .secondsContainer.noZero input[type="number"] {
+  max-width: 23px;
+}
+
+.inputContainer input[type="number"]::-webkit-inner-spin-button,
+.inputContainer input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inputContainer .timerContainer {
+  background-color: #ffffff;
+  padding-inline: 5px;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputContainer .iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.showingMeridiam button {
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.showingMeridiam.AM button:first-child {
+  font-weight: bold;
+}
+
+.showingMeridiam.PM button:last-child {
+  font-weight: bold;
+}
+
+button {
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+
+.clearButton svg {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: var(--controls-color);
+}
+
+.arrowsContainer {
+  display: flex;
+  flex-direction: column;
+}
+.arrowsContainer button {
+  width: 13px;
+  height: 13px;
+  line-height: 1;
+}
+.arrowsContainer button img {
+  width: 15px;
+  height: 15px;
+}
+
+.arrowsContainer button svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--controls-color);
+}
