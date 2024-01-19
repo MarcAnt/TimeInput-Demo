@@ -4,10 +4,6 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-// import UpArrow from "./assets/Icons/UpArrow";
-// import DownArrow from "./assets/Icons/DownArrow";
-// import "./CustomTimeInput/styles/styles.css";
-// import "./App.css";
 import "./example-styles.css";
 import "./clorian-style.css";
 
@@ -37,20 +33,6 @@ const schema = z.object({
 });
 
 function App() {
-  // const [time, setTime] = useState<string | Date>(
-  //   // new Date('2024-02-22T13:30:00.000Z')
-  //   // new Date().toISOString()
-  //   // new Date(2023, 7, 29, 12, 30)
-  //   // "7:50"
-  //   new Date()
-  //   //new Date("10/20/2024 01:01") //Revisar esye formato
-  //   // "10:00"
-  // );
-
-  // const handleChangeTime = (time: string | Date) => {
-  //   setTime(time);
-  // };
-
   const {
     control,
     formState: { errors, isValid },
