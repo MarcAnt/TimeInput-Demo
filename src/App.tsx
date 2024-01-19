@@ -61,7 +61,6 @@ function App() {
       timeInput1: "10:00",
       timeInput2: new Date().toISOString(),
       example: "",
-      // timeInput: new Date().toISOString(),
     },
     resolver: zodResolver(schema),
     mode: "all",
