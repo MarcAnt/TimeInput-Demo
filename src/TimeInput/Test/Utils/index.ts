@@ -1,5 +1,5 @@
 export const getCurrentTime = (
-  locale = undefined,
+  locale: string | undefined = undefined,
   date: string | undefined = undefined
 ) => {
   if (date !== undefined) {

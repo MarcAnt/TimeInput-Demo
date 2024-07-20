@@ -1,0 +1,172 @@
+$containerColor: rgb(96, 96, 96);
+$textColor: rgb(255, 255, 255);
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1px solid $containerColor;
+  background-color: $containerColor;
+  transition: 300ms all ease-in-out;
+  padding: 0;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  max-width: fit-content;
+  min-width: 150px;
+  width: 100%;
+  min-height: 36px;
+}
+
+.timeInputMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 94px;
+}
+
+.inputContainer input[type="number"] {
+  outline: 0;
+  border: none;
+  background-color: transparent;
+  max-width: 20px;
+  padding: 2px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  color: $textColor;
+  -moz-appearance: textfield;
+  -webkit-outer-spin-button,
+  -webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+}
+
+.inputContainer.disabled input[type="number"],
+.inputContainer.disabled span {
+  opacity: 0.5;
+}
+
+.inputContainer span {
+  font-weight: inherit;
+  margin-right: 0.1rem;
+  font-size: 14px;
+  color: $textColor;
+}
+
+.inputContainer .hourContainer.hh.noValue input[type="number"] {
+  max-width: 28px;
+}
+
+.inputContainer .hourContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .hourContainer.noZero input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .minutesContainer.mm.noValue input[type="number"] {
+  max-width: 32px;
+}
+
+.inputContainer .minutesContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .minutesContainer.noZero input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .minutesContainer .withSeconds input[type="number"] {
+  width: 9px;
+}
+
+.inputContainer .minutesContainer.noZero input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .secondsContainer.ss.noValue input[type="number"] {
+  max-width: 32px;
+}
+
+.inputContainer .secondsContainer.hyphen.noValue input[type="number"] {
+  max-width: 20px;
+}
+
+.inputContainer .secondsContainer.noZero input[type="number"] {
+  max-width: 23px;
+}
+
+.inputContainer input[type="number"]::-webkit-inner-spin-button,
+.inputContainer input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+}
+
+.inputContainer .timerContainer,
+.inputContainer .minutesContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.inputContainer .iconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.inputContainer .iconContainer svg {
+  stroke: $textColor;
+  width: 20px;
+  height: 20px;
+}
+
+.inputContainer.disabled .iconContainer {
+  opacity: 0.7;
+}
+
+button {
+  font-size: inherit;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  line-height: 1;
+}
+
+.clearButton svg {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  stroke: $textColor;
+}
+
+.arrowsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.arrowsContainer button {
+  max-height: 16px;
+  display: flex;
+}
+
+.arrowsContainer button svg {
+  width: 10px;
+  height: 10px;
+  stroke: $textColor;
+  stroke-width: 2;
+  fill: none;
+}

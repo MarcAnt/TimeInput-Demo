@@ -1,155 +1,85 @@
-import TimeInput from "./CustomTimeInput/TimeInput";
-import { IconClock } from "@tabler/icons-react";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import TimeInput from "./TimeInput/TimeInput";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-import "./example-styles.css";
-import "./clorian-style.css";
-
-import Standalone from "./Standalone";
-import { TwientyFourHoursRegex } from "./CustomTimeInput/utils";
-
-type FormValues = { timeInput1: string; timeInput2: string; example: string };
+type FormValues = { timeInput: string };
 
 const schema = z.object({
-  timeInput1: z
+  timeInput: z
     .string({
       required_error: "Required",
     })
-    .regex(TwientyFourHoursRegex, {
-      message: "Bad time format",
-    })
+    .time()
     .min(1),
-  timeInput2: z
-    .string({
-      required_error: "Required",
-    })
-    .regex(TwientyFourHoursRegex, {
-      message: "Bad time format",
-    })
-    .min(1),
-  example: z.string().min(1, { message: "required" }),
 });
 
 function App() {
-  const {
-    control,
-    formState: { errors, isValid },
-    getValues,
-    handleSubmit,
-  } = useForm<FormValues>({
+  const { control, watch, reset } = useForm<FormValues>({
     defaultValues: {
-      timeInput1: "10:00",
-      timeInput2: new Date().toISOString(),
-      example: "",
+      timeInput: new Date().toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     },
     resolver: zodResolver(schema),
-    mode: "all",
+    mode: "onChange",
   });
 
-  const submitForm: SubmitHandler<FormValues> = (values) => {
-    console.log(values);
-  };
+  const [timeInput, setTimeInput] = useState<string | Date>("15:00:00");
 
   return (
-    <>
-      <div className={"app"}>
-        <Standalone />
-        <div className="divider"></div>
-        <div className="example-form">
-          <form onSubmit={handleSubmit(submitForm)}>
-            <Controller
-              name={"timeInput1"}
-              control={control}
-              render={({ field }) => {
-                return (
-                  <TimeInput
-                    onChange={field.onChange}
-                    format={"HH:mm a"}
-                    is12Hours={false}
-                    value={field.value}
-                    name={"timeInput1"}
-                    id={"timeInput1"}
-                    currentLocale={"es"}
-                    icon={<IconClock />}
-                    iconPosition={"start"}
-                    iconAriaLabel="clock"
-                    hoursPlaceholder={"hh"}
-                    minutesPlaceholder={"mm"}
-                    secondsPlaceholder={"ss"}
-                    className={"myCustomClass"}
-                    withControls={true}
-                    withClearButton={true}
-                    hasSeconds={false}
-                    showMeridiemControl={false}
-                  ></TimeInput>
-                );
-              }}
-            />
-            {errors.timeInput1?.message && <p>{errors.timeInput1?.message}</p>}
-
-            <Controller
-              name={"timeInput2"}
-              control={control}
-              render={({ field }) => {
-                return (
-                  <TimeInput
-                    onChange={field.onChange}
-                    format={"HH:mm a"}
-                    is12Hours={false}
-                    value={field.value}
-                    name={"timeInput2"}
-                    id={"timeInput2"}
-                    currentLocale={"es"}
-                    icon={<IconClock />}
-                    iconPosition={"start"}
-                    iconAriaLabel="clock"
-                    hoursPlaceholder={"hh"}
-                    minutesPlaceholder={"mm"}
-                    secondsPlaceholder={"ss"}
-                    className={"myCustomClass"}
-                    withControls={true}
-                    withClearButton={true}
-                    hasSeconds={false}
-                    showMeridiemControl={false}
-                    disabled={true}
-                  ></TimeInput>
-                );
-              }}
-            />
-
-            {errors.timeInput2?.message && <p>{errors.timeInput2?.message}</p>}
-
-            <Controller
-              name={"example"}
-              control={control}
-              render={({ field }) => {
-                return (
-                  <input
-                    type="text"
-                    onChange={field.onChange}
-                    value={field.value}
-                  />
-                );
-              }}
-            />
-
-            {errors.example?.message && <p>{errors.example?.message}</p>}
-
-            <div>{JSON.stringify(getValues(), undefined, 2)}</div>
-
-            <button
-              disabled={!isValid}
-              className="clorian-button"
-              type="submit"
-            >
-              Save!
-            </button>
-          </form>
-        </div>
+    <div className="time-inputs-container">
+      <div className="time-input-container">
+        <p>Basic TimeInput (not controlled input)</p>
+        <p>Initial time: 10:30:00</p>
+        <TimeInput
+          value={"10:30:00"}
+          hoursPlaceholder="HH"
+          minutesPlaceholder="mm"
+          secondsPlaceholder="ss"
+          hasSeconds
+        />
       </div>
-    </>
+      <div className="time-input-container">
+        <p>Controlled TimeInput</p>
+        <p>
+          Initial time:{" "}
+          {timeInput instanceof Date
+            ? timeInput.toLocaleTimeString()
+            : timeInput}
+        </p>
+
+        <TimeInput
+          value={timeInput}
+          onChange={(value) => setTimeInput(value)}
+          hasSeconds
+        />
+      </div>
+
+      <div className="time-input-container">
+        <p>Controlled TimeInput with react-hook-form </p>
+        <p>Initial time: {watch("timeInput")}</p>
+        <button className="button-reset" onClick={() => reset()}>
+          Reset
+        </button>
+        <Controller
+          name={"timeInput"}
+          control={control}
+          render={({ field }) => {
+            return (
+              <TimeInput
+                onChange={(value) => {
+                  field.onChange(value);
+                }}
+                value={field.value}
+              />
+            );
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
